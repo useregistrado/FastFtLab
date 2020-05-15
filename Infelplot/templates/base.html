@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style type="text/css">
+    .cardm {
+      position: relative;
+      display: -ms-flexbox;
+      display: inline-block;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      min-width: 0;
+      word-wrap: break-word;
+      background-color: #fdfdfd;
+      background-clip: border-box;
+      border: black 2px solid;
+      border-radius: 0.25rem;
+    }
+    .colm-md-3 {
+      -ms-flex: 0 0 25%;
+      display: inline-block;
+      flex: 0 0 25%;
+      max-width: 25%;
+      margin-right: 10%;
+    }
+    .rowm {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      margin-right: -15px;
+      margin-left: 0px;
+    }
+  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  {% load bootstrap4 %}
+  {# CSS Bootstrap #}
+  {% bootstrap_css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css'%}">
+  <title>Base</title>
+</head>
+<body>
+  <div class="container">
+      <div class="cardm" style="width: 49%;">
+        <div class="card-body">
+          <h4 class="card-title">Datos de entrada</h4><br>
+          <div class="rowm nom-gutters justifym-content-between" >
+            <div class="colm-md-3" >
+              <h4 class="card-subtitle mb-2 text-muted">Z:</h4>
+              <FONT FACE="verdana" SIZE=4>37.87</FONT>
+            </div>
+            <div class="colm-md-3" >
+              <h4 class="card-subtitle mb-2 text-muted">Rhod:</h4>
+              <FONT FACE="verdana" SIZE=4>1587894</FONT>
+            </div>
+            <div class="colm-md-3" >
+              <h4 class="card-subtitle mb-2 text-muted">G:</h4>
+              <FONT FACE="verdana" SIZE=4>0.5</FONT>
+            </div>
+          </div><br>
+          <div class="rowm nom-gutters justifym-content-between" >
+            <div class="colm-md-6" >
+              <h4 class="card-subtitle mb-2 text-muted">Estandard:</h4>
+              <FONT FACE="verdana" SIZE=4>Apatito de durango 38.5 + 5 m.a</FONT>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="cardm" style="width: 49%;">
+      <div class="card-body">
+        <h4 class="card-title">Datos de salida</h4><br>
+        <div class="rowm nom-gutters justifym-content-between" >
+          <div class="colm-md-3" >
+            <h4 class="card-subtitle mb-2 text-muted">Z:</h4>
+            <p class="card-text">47.88</p>
+          </div>
+          <div class="colm-md-3" >
+            <h4 class="card-subtitle mb-2 text-muted">Rhod:</h4>
+            <p class="card-text">1587596</p>
+          </div>
+          <div class="colm-md-3" >
+            <h4 class="card-subtitle mb-2 text-muted">G:</h4>
+            <p class="card-text">0.5</p>
+          </div>
+        </div><br>
+        <div class="rowm nom-gutters justifym-content-between" >
+          <div class="colm-md-6" >
+            <h4 class="card-subtitle mb-2 text-muted">Estandard:</h4>
+            <p class="card-text">Apatito de durango 38.5 + 5 m.a</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  {% load bootstrap4 %}
+  {# CSS Bootstrap #}
+  {% bootstrap_css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css'%}">
+  <title>Infelplot</title>
+
+
+
+
+
+</head>
+
+<body> <!--Este estilo hay que modificarlo como corresponde-->
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="margin-bottom:50px">
+    <div class="container">
+      <a class="navbar-brand" href="#">Infelplot</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Acerca</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Servicios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contacto</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Heading Row -->
+    <div class="row align-items-center my-5">
+
+        <div class="col-md-12 mb-5">
+          <div class="card h-100" >
+            <div class="card-body">
+              <h2 class="card-title">P-Particion</h2>
+              <form class="" method="post" action="/form/" enctype="multipart/form-data">{%csrf_token%}
+                <div class="form-row">
+                  <div class="form-group col-md-5">
+                    <label for="inputState">Estandard</label>
+                    <select id="inputState" class="form-control" name="selector">
+                      <option selected value="apd">Apatito de durango</option>
+                      <option value="apc">Apatitos y circones (Fish Canyon)</option>
+                      <option value="cmb">Circones del miembro Buluk</option>
+                      <option value="cdm">Circones de Dromedary Mountains</option>
+                      <option value="crt">Circones de la riolita de Tardree</option>
+                      <option value="cvb">Circones de la toba volcánica Bishop</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-2">
+                    <label for="inputCity">Rhod</label>
+                    <input type="text" class="form-control" id="inputRho" name="rho">
+                  </div>
+
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="">Datos para calcular Z</label><br>
+                    <input class="file-class" type="file" name="file1" accept=".csv" value="">
+
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="">Datos ns y ni</label><br>
+                    <input class="file-class" type="file" name="file2" accept=".csv" value="">
+                  </div>
+                </div>
+                <input class="btn btn-primary" type="submit" name="enviar" value="Calcular">
+
+              </form>
+          </div>
+        </div>
+
+
+    </div>
+
+    <div class="col-md-12">
+        <table class="table tablep" id="tablep">
+          <thead class="thead-gray">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Ns</th>
+              <th scope="col">Ni</th>
+              <th scope="col">Ages</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for f in rows %}
+              <tr>
+                <th>{{f.0}}</th>
+                <td>{{f.1}}</td>
+                <td>{{f.2}}</td>
+                <td>{{f.3}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+    </div>
+
+    </div>
+  </div>
+  <br><br>
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Infelplot website</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+</body>
+
+</html>
