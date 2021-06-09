@@ -1,32 +1,35 @@
-
 from Infelplot.model.standards import stnd
 import pandas as pd
 from Infelplot.model.Trace import Trace
+from Infelplot.model.Zscripts import Zscripts
+import base64
 class control():
 
-    def __init__(self,csvOne,csvTwo,stnd,rhoD):
-        self.csvOne=csvOne
+    def __init__(self,csvTwo,analista,rhoD,z,nd,zerror,date):
         self.csvTwo=csvTwo
         self.trace=None
-        self.stnd=stnd
+        self.analista=analista
         self.rhoD=rhoD
         self.ns=None
         self.ni=None
+        self.z = z
+        self.nd=nd
+        self.zerror=zerror
+        self.date=date
 
     def begin(self):
-        n = self.openc(self.csvTwo)
-        if len(n[0])==len(n[1]):
-            standard=stnd(self.stnd)
-            self.trace=Trace(n[0],n[1],341.8,self.rhoD)
+        nt = self.openc(self.csvTwo)
+        if len(nt[0])==len(nt[1]):
+            self.trace=Trace(nt[0],nt[1],self.z,self.rhoD,self.nd,self.zerror)
             self.trace.begin()
-            self.ns=n[0]
-            self.ni=n[1]
+            self.ns=nt[0]
+            self.ni=nt[1]
         return "¡¡Error!! \nLas columnas no tienen la misma cantidad de datos"
 
     def openc(self,csv):
-        csv_two = pd.read_csv(csv)
-        ns= list(csv_two['Ns']) #Esta instruccion toma del archivo csv solamente la columna Ns
-        ni= list(csv_two['Ni']) #Esta instruccion toma del archivo csv solamente la columna Ni
+        csv = pd.read_csv(csv)
+        ns= list(csv['Ns']) #Esta instruccion toma del archivo csv solamente la columna Ns
+        ni= list(csv['Ni']) #Esta instruccion toma del archivo csv solamente la columna Ni
         return ns,ni
 
     def getAges(self):
@@ -38,8 +41,25 @@ class control():
         return aux
 
     def get_tx(self):
+        t_central=self.trace.tcentral
         t_mean = self.trace.t_mean
         t_pooled = self.trace.t_pooled
         t_isocrona = self.trace.t_isocrona
 
-        print(t_mean,t_pooled,t_isocrona)
+        return t_central,t_mean, t_pooled, t_isocrona
+
+    def get_parameters(self):
+        return self.trace.parameters()
+
+    def get_plots(self):
+        return self.trace.get_plots()
+
+    def get_doc(self):
+        cabeza='Fission-Track Age Calculation\nAnalyst:;'+self.analista+'\nDate:;'+self.date+'\nZeta:;'+str(self.z)+';\nZeta error:;'+str(self.zerror)+'\nrho-d:;'+str(self.rhoD)+'\nNd:;'+str(self.nd)
+        pie='\n\n\nCentral age:;'+str(self.trace.tcentral)+'\nError:;'+str(self.trace.centralerror)+'\nDispersion:;'+'\n\nPooled age:;'+str(self.trace.t_pooled)+'\nError:;'+str(self.trace.poolederror)+'\n\nMean age:;'+str(self.trace.t_mean)+'\n\nT isocrona:;'+str(self.trace.t_isocrona)
+        doc = (cabeza+pie).replace('.',',')
+        base = str(base64.b64encode(bytes(doc, 'utf-8')))[2:-1]
+        return base
+
+    def get_histo(self):
+        return self.trace.histograma()

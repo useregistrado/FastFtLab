@@ -25,7 +25,7 @@ SECRET_KEY = 'p7e&@j2vxkx@j_#l!tnzg@k+(^_v6z(py@*95o#@wc64y#7g%y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap4',
+    'bootstrap4', #https://pypi.org/project/django-wkhtmltopdf/
 ]
+
+FILE_UPLOAD_HANDLERS = ['django.core.files.uploadhandler.TemporaryFileUploadHandler'] #configuramos esto para poder obtener solo la ruta del archivo
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

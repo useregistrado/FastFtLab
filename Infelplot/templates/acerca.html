@@ -1,0 +1,22 @@
+﻿{% extends "partes/esqueleto.html" %}
+{% load static %}
+{% block content %}
+<div class="row align-items-center my-5">
+    <div class="col-md-12 mb-5">
+      <div class="card h-100" >
+        <div class="card-body">
+          <h2 class="card-title">Acerca de:</h2>
+          <p>Este proyecto fue desarrollado por el grupo de investigación  <a target="_blank" href="HTTP://www.infelcom.co">infelcom</a> de la Escuela de Ingeniería de Sistemas y Computación en conjunto con la Escuela de Ingeniería Geológica de la Universidad Pedagógica y Tecnológica de Colombia.</p>
+          <center>
+            <img width="380px" height="230px" src="{% static 'images/infelcom.png'%}">
+          </center>
+          <br>
+          <p>Descargue el manual del usuario para mayor información acerca del uso del sitio web. </p>
+          <a download="manual.pdf" class="btn btn-light" href="{% static 'files/Manual de usuario.pdf'%}">Manual de usuario <img width="38px" height="25px" src="{% static 'images/pdf.png'%}" alt=""></a>
+      </div>
+    </div>
+
+</div>
+
+</div>
+{% endblock %}

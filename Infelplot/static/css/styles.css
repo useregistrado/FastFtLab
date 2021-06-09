@@ -13,6 +13,44 @@ background-color: white;
 
 }
 
-.thead-gray{
-  background-color:#CECECE;
+.uncontaier{
+
+     position: relative;
+}
+
+
+#text {
+     z-index: 100;
+     position: absolute;
+     color: white;
+     left: 150px;
+}
+.text1{
+     font-weight: bold;
+     font-size: 34px;
+     top: 250px;
+}
+
+.text2{
+     font-size: 24px;
+     top:320px;
+     width: 80%;
+}
+
+.text3{
+     margin: 0 0 0 0;
+     color: white;
+}
+
+.text4{
+     font-size:18PX;
+}
+
+.card{
+  height: 300px;
+}
+
+html {
+  min-height: 100%;
+  position: relative;
 }

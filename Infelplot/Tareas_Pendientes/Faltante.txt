@@ -1,0 +1,10 @@
+Falta en el programa
+Agregar la lista de ejemplos y describir que hace cada pestaña (ya lo hice)
+Agregar en static el directorio files y colocar dentro el manual (ya lo hice)
+En acerca debe haber una lista formal de referencias y si es posible cargar la bibliografía en pdf
+El reporte no está sacando el error sobre la edad
+En el reporte sería ideal en la ventana html que arroje los distintos estimadores de la edad con su error de una vez, si pasa o falla el test de Galbraith y si es posible el radial plot
+Es importante colocar una pestaña en el cual el usuario indique que estándar utilizó, algo parecido a lo que haces con los vidrios
+En el cálculo de la afluencia dice otro vidrio, pero en ese caso el usuario debe insertar la cantidad de U en ppm que tenga ese vidrio
+En el reporte en pdf igual, sería ideal que arroje la misma información mencionada anteriormente
+En acerca debería ir una ayuda, en donde carguemos los archivos .csv de ejemplos

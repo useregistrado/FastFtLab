@@ -1,0 +1,160 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style type="text/css">
+    .cardm {
+      position: relative;
+
+      display: inline-block;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      min-width: 0;
+      background-color: #fdfdfd;
+      border: black 2px groove;
+      border-radius: 0.25rem;
+    }
+    .colm-md-3 {
+      -ms-flex: 0 0 25%;
+      display: inline-block;
+      flex: 0 0 25%;
+      max-width: 25%;
+      margin-right: 10%;
+    }
+
+    .colm-md-4 {
+      -ms-flex: 0 0 28%;
+      display: inline-block;
+      flex: 0 0 25%;
+      max-width: 28%;
+      margin-right: 8%;
+    }
+
+    .rowm {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      margin-right: -15px;
+      margin-left: 0px;
+    }
+    .thead-gray{
+      background-color:#CECECE;
+    }
+
+    h4{
+      color:#0404B4;
+    }
+
+    h3{
+      color:#145555;
+    }
+
+    .card-title{
+      color: #0A0A2A;
+    }
+    .head{
+      border: black 1px solid;
+      width: 98.5%;
+      border-radius: 0.10rem;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      flex-direction: column;
+
+    }
+
+    .headsubone{
+      float: left;
+      width: 19%;
+      margin-top: 2px;
+      margin-left: 41%;
+    }
+    .headsubtwo{
+      float: right;
+      margin: 2px;
+      margin-right: 7
+      px;
+    }
+  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% load bootstrap4 %}
+  {# CSS Bootstrap #}
+  {% bootstrap_css %}
+  <title>Reporte</title>
+</head>
+<body><br>
+  <div class="container" border="solid 2px red">
+    <div class="head">
+      <div class="headsubone">
+        <FONT FACE="times new roman" SIZE=5>FastFTLab versión 1</FONT>
+      </div>
+      <div class="headsubtwo">
+        <FONT FACE="times new roman" SIZE=5><i>Counted:{{date}}</i></FONT>
+      </div>
+
+
+    </div><br>
+      <div class="cardm" style="width: 49%;">
+        <div class="card-body">
+          <h4 class="card-title">Datos de entrada</h4><br>
+          <div class="rowm nom-gutters justifym-content-between" >
+            <div class="colm-md-3" >
+              <h4 class="card-subtitle mb-2">Z:</h4>
+              <FONT FACE="verdana" SIZE=4>{{p.0}}</FONT>
+            </div>
+            <div class="colm-md-3" >
+              <h4 class="card-subtitle mb-2">Rhod:</h4>
+              <FONT FACE="verdana" SIZE=4>{{p.1}}</FONT>
+            </div>
+            <div class="colm-md-3" >
+              <h4 class="card-subtitle mb-2">G:</h4>
+              <FONT FACE="verdana" SIZE=4>{{p.2}}</FONT>
+            </div>
+          </div><br>
+          <div class="rowm nom-gutters justifym-content-between" >
+            <div class="colm-md-6" >
+              <h4 class="card-subtitle mb-2 ">Estandard Usado:</h4>
+              <FONT FACE="verdana" SIZE=4>Apatito de durango: 31.4 + 0.5 Ma</FONT>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="cardm" align="rigth" style="width: 49%;">
+      <div class="card-body">
+        <h4 class="card-title">Estimaciones</h4><br>
+        <div class="rowm nom-gutters justifym-content-between" >
+          <div class="colm-md-3" >
+            <h4 class="card-subtitle mb-2">Central age:</h4>
+            <FONT FACE="verdana" SIZE=4>{{ages.0}}</FONT>
+          </div>
+          <div class="colm-md-3" >
+            <h4 class="card-subtitle mb-2">Mean age:</h4>
+            <FONT FACE="verdana" SIZE=4>{{ages.1}}</FONT>
+          </div>
+        </div><br>
+        <div class="rowm nom-gutters justifym-content-between" >
+          <div class="colm-md-4" >
+            <h4 class="card-subtitle mb-2">Pooled age:</h4>
+            <FONT FACE="verdana" SIZE=4>{{ages.2}}</FONT>
+          </div>
+          <div class="colm-md-4" >
+            <h4 class="card-subtitle mb-2">Isochron age:</h4>
+            <FONT FACE="verdana" SIZE=4>{{ages.3}}</FONT>
+          </div>
+        </div>
+      </div>
+    </div> <br> <br>
+    <div class="" style="width: 49%;">
+        {{i|safe}}
+    </div>
+  </div>
+  </div>
+  <br>
+</body>

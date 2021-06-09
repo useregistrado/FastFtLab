@@ -1,0 +1,35 @@
+{% extends "partes/esqueleto.html" %}
+{% load static %}
+{% block content %}
+<div class="row align-items-center my-5">
+  <div class="col-md-12 mb-5">
+    <div class="card h-100">
+      <div class="card-body">
+        <h2 class="card-title">Radial Plots</h2>
+        <form class="" action="radialplot" method="post" enctype="multipart/form-data">{%csrf_token%}
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="">Data (Archivo.csv, ver ayuda para especificaciones del archivo) </label><br>
+              <input class="file-class" type="file" name="datafileplot" accept=".csv" >
+            </div>
+            <div class="form-group d-flex align-items-end col-md-5">
+              <button type="submit" class="btn btn-primary" name="button">Graficar</button>
+            </div>
+          </div>
+        </form>
+        <center>
+          <img width="500px" style="margin-right:15px" src="data:image/png;base64,{{i.0}}" alt="">
+
+          <img width="500px" style="margin-left:15px" src="data:image/png;base64,{{i.1}}" alt="">
+        </center>
+        <center>
+          <img width="500px" src="data:image/png;base64,{{i.2}}" alt="">
+        </center>
+
+      </div>
+
+    </div>
+
+  </div>
+</div><br>
+{% endblock %}

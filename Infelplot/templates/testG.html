@@ -1,0 +1,28 @@
+{% extends "partes/esqueleto.html" %}
+{% load static %}
+{% block content %}
+<div class="row align-items-center my-5">
+    <div class="col-md-12 mb-5">
+      <div class="card h-100" >
+        <div class="card-body">
+          <h2 class="card-title">Test de Galbraith (Galbraith,1981) </h2>
+          <form class="" method="post" action="testGalbraith" onsubmit="return validate(this)" enctype="multipart/form-data">{%csrf_token%}
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label for="">Insertar Ns y Ni (Use un archivo .csv con encabezados)</label><br>
+                <input class="file-class" type="file" name="csvgalb" accept=".csv" value="" required>
+              </div>
+            </div>
+            <input class="btn btn-primary" type="submit" name="enviar" value="Calcular">
+          </form>
+          <center>
+            <h3>{{response}}</h3>
+          </center>
+
+      </div>
+    </div>
+
+</div>
+
+</div>
+{% endblock %}

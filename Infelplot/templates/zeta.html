@@ -1,0 +1,88 @@
+{% extends "partes/esqueleto.html" %}
+{% load static %}
+{% block content %}
+<div class="row align-items-center my-5">
+
+    <div class="col-md-12 mb-5">
+      <div class="card h-100" >
+        <div class="card-body">
+          <h2 class="card-title">Factor de calibración Z</h2>
+          <form class="" method="post" action="calibracionzeta" onsubmit="return validate(this)" enctype="multipart/form-data">{%csrf_token%}
+            <div class="form-row">
+              <div class="form-group col-md-2">
+                <label for="inputCity">Muestra</label>
+                <input type="number" min="0" class="form-control" id="inputRho" name="muestra" required>
+                <div class="invalid-feedback">
+                  Campo necesario
+                </div>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputCity">Analista</label>
+                <input type="text" min="0" class="form-control" id="inputRho" name="analista" required>
+                <div class="invalid-feedback">
+                  Campo necesario
+                </div>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="inputCity">Fecha del Análisis</label>
+                <input type="date" class="form-control" name="date" required>
+                <div class="invalid-feedback">
+                  Campo necesario
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-sm-4 col-md-2">
+                <label for="inputCity">Edad del Estándar </label>
+                <input type="text" min="0" class="form-control" id="inputRho" name="edad" required>
+                <div class="invalid-feedback">
+                  Campo necesario
+                </div>
+              </div>
+
+              <div class="form-group col-sm-4 col-md-1">
+                <label for="inputCity">Error</label>
+                <input type="int" class="form-control" id="" name="error" required>
+              </div>
+              <div class="form-group col-sm-4 col-md-2">
+                <label for="inputCity">Rhod</label>
+                <input type="text" placeholder="" min="1" class="form-control" name="rhod" required>
+              </div>
+              <div class="form-group col-sm-3 col-md-2">
+                <label for="inputCity">Nd</label>
+                <input placeholder="" min="1" class="form-control" name="nd" required>
+              </div>
+              <div class="form-group col-sm-4 col-md-2">
+                <label for="inputCity">Tamaño cuadrícula microscopio</label>
+                <input type="text" min="1" value="" class="form-control" name="uds" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label for="">Inserte Ns, Ni y A (Use un archivo .csv con encabezado)</label><br>
+                <input class="file-class" type="file" name="csvzeta" accept=".csv" value="">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-3 col-sm-2" >
+                <label for="">Descripción: Escriba una pequeña reseña</label>
+                <textarea name="desc" rows="3" cols="63"></textarea>
+              </div>
+            </div>
+
+            <input class="btn btn-primary" type="submit" name="enviar" value="Calcular">
+            {% if disable %}
+              <a download="file.csv" class="btn btn-light" href="data:@file/vnd.ms-excel;base64,{{doc}}">file.csv <img width="38px" height="23px" src="{% static 'images/csv.jpg'%}" alt=""></a>
+            {% endif %}
+          </form>
+
+
+      </div>
+    </div>
+
+</div>
+
+</div>
+
+{% endblock %}

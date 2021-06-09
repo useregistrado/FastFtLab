@@ -15,11 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Infelplot.views import  form, pdff, base
+from Infelplot.views import pdff, base, plot,fluence,zeta, radialplot,fluence1, testG, acerca, index,cedades
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', form),
-    path('reporte.pdf',pdff),
+    path('fluence',fluence),
+    path('fluence1',fluence1),
+    path('reporte',pdff),
     path('base',base),
+    path('plot',plot),
+    path('radialplot',radialplot),
+    path('calibracionzeta',zeta),
+    path('testGalbraith',testG),
+    path('acerca',acerca),
+    path('',index),
+    path('cedades',cedades)
 ]

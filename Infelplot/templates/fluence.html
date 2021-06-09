@@ -1,0 +1,157 @@
+{% extends "partes/esqueleto.html" %}
+{% load static %}
+{% block content %}
+
+<div class="row align-items-center my-5">
+
+    <div class="col-md-12 mb-5">
+      <div class="card h-100" >
+        <div class="card-body">
+          <h2 class="card-title">Cálculo de la afluencia</h2>
+          <div id="accordion">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button style="text-align:left;" class="btn btn-link btn-block" data-toggle="collapse" data-target="#collapseOne" aria-controls="collapseOne">
+                  Un monitor
+                </button>
+              </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                <h3 class="card-title">Para un monitor (Calcula Rhod y el error para la mica)</h3>
+                <form class="" action="fluence1" enctype="multipart/form-data" method="post">{%csrf_token%}
+                  <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label for="inputCity">Tamaño de la cuadrícula del microscopio</label>
+                      <input type="text" min="0" placeholder="0.0000006432" class="form-control" id="inputRho" name="csz" required>
+                      <div class="invalid-feedback">
+                        Campo necesario
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                      <label for="inputCity">Inserte # de trazas contadas (.csv)</label>
+                      <input class="file-class" type="file" name="fluencefile" accept=".csv" required>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary" name="button">Calcular</button>
+                </form><br>
+                {% if d %}
+                  <h5>Densidad del Monitor (Rhod): {{r}}</h5>
+                  <h5>Trazas contadas en el Monitor (Nd): {{n}}</h5>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <button style="text-align:left;" class="btn btn-link btn-block" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Dos monitores
+                </button>
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+                <h3 class="card-title">Para dos monitores</h3>
+                <form class="" method="post" action="fluence" onsubmit="return validate(this)" enctype="multipart/form-data">{%csrf_token%}
+                  <div class="form-row">
+                    <div class="form-group col-md-2">
+                      <label for="inputCity">Número de irradiación </label>
+                      <input type="number" min="0" class="form-control" id="inputRho" name="numberi" required>
+                      <div class="invalid-feedback">
+                        Campo necesario
+                      </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label for="inputCity">Reactor</label>
+                      <input type="text" min="0" class="form-control" id="inputRho" name="reactor" required>
+                      <div class="invalid-feedback">
+                        Campo necesario
+                      </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label for="inputCity">Fecha de irradiación </label>
+                      <input type="date" class="form-control" name="datei" required>
+                      <div class="invalid-feedback">
+                        Campo necesario
+                      </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label for="inputCity">Vidrio usado </label>
+                      <select id="inputglass" class="form-control" name="vidrio">
+                        <option selected value="CN-1">CN-1</option>
+                        <option value="CN-5">CN-5</option>
+                        <option value="IRMM-540">IRMM-540</option>
+                        <option value="IRMM-541">IRMM-541</option>
+                        <option value="SRM-962">SRM-962</option>
+                        <option value="Otro">Otro</option>
+                      </select>
+                      <div class="invalid-feedback">
+                        Campo necesario
+                      </div>
+                    </div>
+                  </div><br>
+
+                  <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label for="inputCity">Rhod primer monitor (t/cm^2) </label>
+                      <input type="number" min="0" placeholder="723500" class="form-control" id="inputRho" name="rhodM0" required>
+                      <div class="invalid-feedback">
+                        Campo necesario
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                      <label for="inputCity">Nd monitor</label>
+                      <input type="text" placeholder="5584" class="form-control" id="" name="NdM0" required>
+                    </div>
+                    <div class="form-group col-md-1">
+                      <label for="inputCity">Posición</label>
+                      <input type="number" placeholder="1" min="1" class="form-control" name="pos0" required>
+                    </div>
+
+                  </div><br>
+                  <div class="form-row">
+                    <div class="form-group col-md-4">
+                      <label for="inputCity">Rhod segundo monitor (t/cm^2)</label>
+                      <input type="number" min="0" placeholder="703300" class="form-control" id="inputRho" name="rhodM1" required>
+                      <div class="invalid-feedback">
+                        Campo necesario
+                      </div>
+                    </div>
+                    <div class="form-group col-md-2">
+                      <label for="inputCity">Nd monitor</label>
+                      <input type="number" min="0" placeholder="5428" class="form-control" id="" name="NdM1" required>
+                    </div>
+                    <div class="form-group col-md-1">
+                      <label for="inputCity">Posición</label>
+                      <input type="number" placeholder="20" min="1" class="form-control" id="inputzeta" name="pos1" required>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-3 col-sm-2" >
+                      <label for="">Descripción (Escriba una pequeña descripción) </label>
+                      <textarea name="description" rows="3" cols="63"></textarea>
+                    </div>
+                  </div>
+
+                  <input class="btn btn-primary" type="submit" name="enviar" value="Interpolar">
+                  {% if disable %}
+                    <a download="file.csv" class="btn btn-light" href="data:@file/vnd.ms-excel;base64,{{doc}}">file.csv <img width="38px" height="23px" src="{% static 'images/csv.jpg'%}" alt=""></a>
+                  {% endif %}
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><br>
+</div>
+
+</div>
+
+{% endblock %}

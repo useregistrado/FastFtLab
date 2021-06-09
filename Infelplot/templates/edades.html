@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  {% load bootstrap4 %}
+  {# CSS Bootstrap #}
+  {% bootstrap_css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css'%}">
+  <link rel="shortcut icon" href="{% static 'images/icon.png'%}" />
+  <script type="text/javascript">
+    function validate(v) {
+      if(v.csvzeta.value=="" && v.inputzeta.value==""){
+        alert("Es necesario introducir un valor para z\npor medio de csv o de constante")
+        return false
+      }
+      return true
+    }
+  </script>
+  <title>FTLab</title>
+</head>
+
+<body> <!--Este estilo hay que modificarlo como corresponde-->
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="margin-bottom:50px">
+    <div class="container">
+      <a class="navbar-brand" href="/">Inicio</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="cedades">Calculo de edades</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="calibracionzeta">Calibración Z</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="fluence">Fluence</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="radialplot">Radial Plots</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="testGalbraith">Test de Galbraith
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="acerca">Acerca</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Heading Row -->
+    <div class="row align-items-center my-5">
+
+        <div class="col-md-12 mb-5">
+          <div class="card h-100" >
+            <div class="card-body">
+              <h2 class="card-title">Calculo de edades (Fission Track)</h2>
+              <form class="" method="post" action="reporte" onsubmit="return validate(this)" enctype="multipart/form-data">{%csrf_token%}
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="inputState">Analista</label>
+                    <input type="text" class="form-control" id="inputAnalista" name="analista" required>
+                  </div>
+
+                  <div class="form-group col-md-2">
+                    <label for="inputCity">Z</label>
+                    <input type="text" class="form-control" id="inputzeta" name="zeta" required>
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="inputCity">Error</label>
+                    <input type="text" class="form-control" id="inputzeta" name="zerror" required>
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="inputCity">Rhod</label>
+                    <input type="text" class="form-control" id="inputRho" name="rho" required>
+                    <div class="invalid-feedback">
+                      Campo necesario
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-2">
+                    <label for="inputCity">Nd</label>
+                    <input type="text" class="form-control" id="inputnd" name="Nd" required>
+                  </div>
+
+                  <div class="form-group col-md-4">
+                    <label for="">Fecha del Análisis</label>
+                    <input type="date" class="form-control" name="date" required>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="">Ayuda: Inserte sus datos usando un archivo .csv (separado por comas), agregue dos columnas con encabezados para Ns y Ni</label><br>
+                    <input class="file-class is-invalid" type="file" name="file2" accept=".csv" value="" required>
+                  </div>
+                </div>
+                <input class="btn btn-primary" type="submit" name="enviar" value="Calcular">
+                {% if disable %}
+                <a download="edades.csv" class="btn btn-light" href="data:@file/vnd.ms-excel;base64,{{doc}}">edades.csv <img width="38px" height="23px" src="{% static 'images/csv.jpg'%}" alt=""></a>
+                <a download="reporte.pdf" class="btn btn-light" href="data:application/pdf;base64,{{docp}}">reporte.pdf <img width="38px" height="25px" src="{% static 'images/pdf.png'%}" alt=""></a>
+                {% endif %}
+              </form><br>
+              <center>
+                <img width="70%" src="data:image/png;base64,{{h}}" alt="">
+              </center>
+          </div>
+        </div>
+
+    </div>
+
+    </div>
+  </div>
+  <br><br>
+  <!-- Footer -->
+  <footer class="py-4 d-flex flex-column align-items-center justify-content-center text-center bg-dark " >
+    <div class="d-flex align-items-center justify-content-center">
+      <p class="text3">
+        © 2020-2021 Copyright:
+        GRUPOS DE INVESTIGACIÓN UPTC: INFELCOM E INGEOLOG
+      </p>
+    </div>
+
+     <div class="d-flex align-items-center justify-content-center">
+       <p class="text3">infelcom@uptc.edu.co</p>
+     </div>
+    <!-- /.container -->
+  </footer>
+
+</body>
+
+</html>
