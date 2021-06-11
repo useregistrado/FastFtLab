@@ -46,11 +46,13 @@ background-color: white;
      font-size:18PX;
 }
 
-.card{
-  height: 300px;
+.footer_div{
+  position: relative;
 }
 
-html {
-  min-height: 100%;
-  position: relative;
+footer{
+  display: block;
+  position: -webkit-sticky;
+  bottom: 0;
+  width: 100%;
 }
